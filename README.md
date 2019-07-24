@@ -12,9 +12,9 @@ Note: Change values in sg.tf file under `ec2_nodes` and `prometheus` project to 
 
 # Step 1 - Setting Up EC2 nodes:
 
--- Please read through variable.tf file and change values to fit to your requirement.
+Please read through variable.tf file and change values to fit to your requirement.
 
--- Please change CIDR Values based on your requirement. Just make sure, CIDR value must match from the Subnet Group - where you are going to pick to launch your instances.
+Please change CIDR Values based on your requirement. Just make sure, CIDR value must match from the Subnet Group - where you are going to pick to launch your instances.
 
 Go to ec2 terraform project and run below commands in sequence(input values whereever those are not set by default):
 
@@ -38,7 +38,7 @@ Output will be generated for these 2 instances that will be used in Step 2. As o
 
 Go to ansible folder, before running the playbook.
 
-Please make sure your profile has been set with correct ACCESS_KEY and SECRET_KEY values, if it is set as default, then the command can be run as:
+Please make sure your profile has been set with correct `ACCESS_KEY` and `SECRET_KEY` values, if it is set as default, then the command can be run as:
 
 `ansible-playbook -i ec2.py -l <Instance_ID> -e 'ansible_ssh_user=ubuntu' -e 'ansible_python_interpreter=/usr/bin/python3' playbook-prometheus-node-exporter.yml`
 
@@ -57,11 +57,15 @@ Make sure Access Key and Secret Key is defined there, otherwise it will not pick
 -- Go to prometheus terraform project and run below commands in sequence(input values whereever those are not set by default):
 
 `terraform init`
+
 `terraform plan`
+
 `terraform apply`
 
 Note: If credentails are not set as default then we need to mention profile name while running above mentioned commands:
 
 `AWS_PROFILE=<XYZ> terraform init`
+
 `AWS_PROFILE=<XYZ> terraform plan`
+
 `AWS_PROFILE=<XYZ> terraform plan`
