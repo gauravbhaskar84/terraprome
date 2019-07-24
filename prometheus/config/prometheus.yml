@@ -1,0 +1,50 @@
+# my global config
+global:
+  scrape_interval:     15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
+  evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
+  # scrape_timeout is set to the global default (10s).
+
+# Alertmanager configuration
+alerting:
+  alertmanagers:
+  - static_configs:
+    - targets:
+      # - alertmanager:9093
+
+# Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
+rule_files:
+  # - "first_rules.yml"
+  # - "second_rules.yml"
+
+# A scrape configuration containing exactly one endpoint to scrape:
+# Here it's Prometheus itself.
+scrape_configs:
+  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+  - job_name: 'prometheus'
+
+    # metrics_path defaults to '/metrics'
+    # scheme defaults to 'http'.
+
+    static_configs:
+            - targets: ['localhost:9090']
+
+  # If we want to monitor all ec2 instances in a spceific region then we can specify the below configuration 
+  # based on tags instead of specific IPs in "static_configs"
+
+  - job_name: "ec2linux-eu-central-1"
+    scrape_interval: 30s
+    scrape_timeout:  10s
+    ec2_sd_configs:
+    - region: eu-central-1
+  # Please use proper keys to fetch instances to be monitored, with this we dont have to specify instance IPs manually
+      access_key: <ACCESS_KEY>
+      secret_key: <SECRET_KEY>
+      port: 7100
+    relabel_configs:
+      - source_labels: [__meta_ec2_tag_OS]
+        regex: Linux
+        action: keep
+      - source_labels: [__meta_ec2_tag_Name, __meta_ec2_private_ip]
+        target_label: instance
+      - source_labels: [__meta_ec2_tag_Team]
+        target_label: team

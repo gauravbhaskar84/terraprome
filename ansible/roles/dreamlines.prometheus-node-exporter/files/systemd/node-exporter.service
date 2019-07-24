@@ -1,0 +1,13 @@
+[Unit]
+Description=Prometheus Node Exporter
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+TimeoutStartSec=0
+Restart=on-failure
+RestartSec=20
+ExecStart=/opt/node-exporter/bin/node-exporter --web.listen-address=":7100"
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,36 @@
+---
+
+- name: Create directory for node exporter
+  file:
+      path: /opt/node-exporter/bin
+      state: directory
+      owner: root
+      group: root
+      mode: 0775
+      recurse: yes
+
+- name: Deploy node exporter binary
+  copy:
+      src: 0.16/node-exporter
+      dest: /opt/node-exporter/bin/node-exporter
+      owner: root
+      group: root
+      mode: 0755
+
+- name: Deploy node exporter systemd unit file
+  copy:
+      src: systemd/node-exporter.service
+      dest: /etc/systemd/system/node-exporter.service
+      owner: root
+      group: root
+      mode: 0755
+
+- name: Reload systemd
+  systemd: daemon_reload=yes
+
+- name: Enable node-exporter service
+  systemd:
+      name: node-exporter.service
+      state: restarted
+      enabled: yes
+
