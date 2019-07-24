@@ -18,19 +18,19 @@ Note: Change values in sg.tf file under `ec2_nodes` and `prometheus` project to 
 
 Go to ec2 terraform project and run below commands in sequence(input values whereever those are not set by default):
 
-terraform init
+`terraform init`
 
-terraform plan
+`terraform plan`
 
-terraform apply
+`terraform apply`
 
 Note: If credentails are not set as default then we need to mention profile name while running above mentioned commands:
 
 `AWS_PROFILE=<XYZ> terraform init`
 
-AWS_PROFILE=<XYZ> terraform plan
+`AWS_PROFILE=<XYZ> terraform plan`
 
-AWS_PROFILE=<XYZ> terraform plan
+`AWS_PROFILE=<XYZ> terraform plan`
 
 Output will be generated for these 2 instances that will be used in Step 2. As of now only 2 instances are considered for the test case.
 
@@ -56,12 +56,12 @@ Make sure Access Key and Secret Key is defined there, otherwise it will not pick
 
 -- Go to prometheus terraform project and run below commands in sequence(input values whereever those are not set by default):
 
-terraform init
-terraform plan
-terraform apply
+`terraform init`
+`terraform plan`
+`terraform apply`
 
 Note: If credentails are not set as default then we need to mention profile name while running above mentioned commands:
 
-AWS_PROFILE=<XYZ> terraform init
-AWS_PROFILE=<XYZ> terraform plan
-AWS_PROFILE=<XYZ> terraform plan
+`AWS_PROFILE=<XYZ> terraform init`
+`AWS_PROFILE=<XYZ> terraform plan`
+`AWS_PROFILE=<XYZ> terraform plan`
