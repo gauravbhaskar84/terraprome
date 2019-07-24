@@ -1,6 +1,7 @@
-# Consideration, 
+# Consideration: 
 
 VPC CIDR -  10.y.0.0/16
+
 Private Subnet CIDR - 10.y.0.0/25 (Route Table through Nat Gateway)
 
 Your Local Network CIDR - 10.x.0.0/16 to access Nodes.
@@ -12,18 +13,23 @@ Note: Change values in sg.tf file under `ec2_nodes` and `prometheus` project to 
 # Step 1 - Setting Up EC2 nodes:
 
 -- Please read through variable.tf file and change values to fit to your requirement.
+
 -- Please change CIDR Values based on your requirement. Just make sure, CIDR value must match from the Subnet Group - where you are going to pick to launch your instances.
 
 Go to ec2 terraform project and run below commands in sequence(input values whereever those are not set by default):
 
 terraform init
+
 terraform plan
+
 terraform apply
 
 Note: If credentails are not set as default then we need to mention profile name while running above mentioned commands:
 
-AWS_PROFILE=<XYZ> terraform init
+`AWS_PROFILE=<XYZ> terraform init`
+
 AWS_PROFILE=<XYZ> terraform plan
+
 AWS_PROFILE=<XYZ> terraform plan
 
 Output will be generated for these 2 instances that will be used in Step 2. As of now only 2 instances are considered for the test case.
