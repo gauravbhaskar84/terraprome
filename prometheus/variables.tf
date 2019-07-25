@@ -44,5 +44,5 @@ variable "instance_username" {
 
 variable "private_key_path" {
 # please set the path where you have kept the private key along with the key name, this is required to connect and install prometheus server on an ec2 instance
-  default = "/Users/gaurav.bhaskar/.ssh/dreamlines_server_2018_rsa.pem"
+  default = "<Path of the Private Key Stored>"
 }
